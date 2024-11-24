@@ -1,11 +1,11 @@
 import { SVGProps } from 'react'
 
-export function MaterialSymbols3dRotation(props: SVGProps<SVGSVGElement>) {
+export function Icon3D(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="1em"
-      height="1em"
+      width="2em"
+      height="2em"
       viewBox="0 0 24 24"
       {...props}
     >

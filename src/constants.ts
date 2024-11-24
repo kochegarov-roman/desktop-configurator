@@ -1,6 +1,13 @@
-import { IMaterial, IDeskProperties, DeskPropertiesType } from './types'
+import {
+  IMaterial,
+  IDesktopProperties,
+  DesktopPropertiesType,
+  IHoleVariant,
+  ICameraProperties
+} from './types'
+import * as THREE from 'three'
 
-export const deskTopMaterialsData: IMaterial[] = [
+export const DESKTOP_MATERIALS_DATA: IMaterial[] = [
   {
     color: '#c7b299',
     name: 'Ashwood',
@@ -33,7 +40,7 @@ export const deskTopMaterialsData: IMaterial[] = [
   }
 ]
 
-export const propsData = [
+export const PROPS_DATA = [
   {
     path: '/prop_01.glb',
     name: 'Вариант 1',
@@ -48,33 +55,45 @@ export const propsData = [
   }
 ]
 
-export const holesVariatns = [
+export const HOLE_VARIANTS: IHoleVariant[] = [
   {
-    path: '/prop_01.glb',
-    name: 'Вариант 1',
-    geometryKey: 'prop_01',
-    materialKey: 'prop_mat'
+    title: 'Без отверстия',
+    useHole: false,
+    holeShape: null,
+    geometry: null
   },
   {
-    path: '/prop_02.glb',
-    name: 'Вариант 2',
-    geometryKey: 'prop_02',
-    materialKey: 'prop_mat'
+    useHole: true,
+    title: 'Квадрат',
+    holeShape: 'square',
+    geometry: new THREE.BoxGeometry(0.05, 1, 0.05)
+  },
+  {
+    useHole: true,
+    title: 'Прямоугольник',
+    holeShape: 'rectangle',
+    geometry: new THREE.BoxGeometry(0.2, 1, 0.05)
+  },
+  {
+    useHole: true,
+    title: 'Круг',
+    holeShape: 'circle',
+    geometry: new THREE.SphereGeometry(0.03, 64, 64)
   }
 ]
 
-export const initialDeskSizeProperties: DeskPropertiesType = {
+export const INITIAL_DESKTOP_SIZE_PROPERTIES: DesktopPropertiesType = {
   width: { size: { min: 1200, max: 2400 }, title: 'Ширина A (мм)' },
   depth: { size: { min: 300, max: 900 }, title: 'Глубина A (мм)' },
   height: { size: { min: 500, max: 1200 }, title: 'Высота ножек (мм)' }
 }
 
-export const shapeKeysSize = {
+export const SHAPE_KEYS_SIZE = {
   depth: { min: 300, max: 1500 },
   height: { min: 500, max: 1200 }
 }
 
-export const legData = [
+export const LEG_DATA = [
   {
     path: '/leg.glb',
     name: 'Leg',
@@ -85,12 +104,19 @@ export const legData = [
   }
 ]
 
-export const currentDeskProperties: IDeskProperties = {
-  width: initialDeskSizeProperties.width.size.min,
-  height: initialDeskSizeProperties.height.size.min,
-  depth: initialDeskSizeProperties.depth.size.min,
-  deskTopMaterial: deskTopMaterialsData[0],
-  prop: propsData[0],
-  leg: legData[0],
-  legBoxSize: { width: 0, height: 0, depth: 0 }
+export const INITIAL_CAMERA_PROPERTIES: ICameraProperties = {
+  position: [-15, 10, 15],
+  lookAt: [0, 5, 0]
+}
+
+export const currentDesktopProperties: IDesktopProperties = {
+  width: INITIAL_DESKTOP_SIZE_PROPERTIES.width.size.min,
+  height: INITIAL_DESKTOP_SIZE_PROPERTIES.height.size.min,
+  depth: INITIAL_DESKTOP_SIZE_PROPERTIES.depth.size.min,
+  desktopMaterial: DESKTOP_MATERIALS_DATA[0],
+  prop: PROPS_DATA[0],
+  leg: LEG_DATA[0],
+  legBoxSize: { width: 0, height: 0, depth: 0 },
+  hole: HOLE_VARIANTS[0],
+  cameraProperties: INITIAL_CAMERA_PROPERTIES
 }

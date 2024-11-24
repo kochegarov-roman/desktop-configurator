@@ -1,5 +1,5 @@
 import { Spinner } from './spinner'
-import { useAppearanceDelay } from '@/shared/lib/react'
+import { useAppearanceDelay } from '../../lib/react'
 
 export function FullPageSpinner({
   isLoading,

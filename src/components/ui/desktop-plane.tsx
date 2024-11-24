@@ -1,4 +1,3 @@
-import React from 'react'
 import { IMaterial } from '../../types'
 
 interface IDeskTopPlaneProps {
