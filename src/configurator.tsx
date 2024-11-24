@@ -46,7 +46,7 @@ export const Configurator = ({
   } = context
 
   useEffect(() => {
-    ;[...PROPS_DATA, ...DESKTOP_MATERIALS_DATA].forEach((p) =>
+    [...PROPS_DATA, ...DESKTOP_MATERIALS_DATA].forEach((p) =>
       useGLTF.preload(p.path)
     )
   }, [])
