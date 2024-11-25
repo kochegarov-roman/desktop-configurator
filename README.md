@@ -8,8 +8,10 @@ node/20.18.0
 npm i
 npm run dev
 ```
+go to http://localhost:3001
 
-for test:
+
+***for test:***
 
 ```bash
 npm run test:e2e
