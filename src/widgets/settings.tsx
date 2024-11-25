@@ -5,7 +5,7 @@ import {
   AccordionTrigger
 } from '../components/ui/accordion'
 import { DesktopSizeSettings } from './size-settings'
-import { DeskTopMaterials } from './materials'
+import { DesktopMaterials } from './desktop-materials'
 import { PropsVariants } from './props-variants'
 import { HoleVariants } from './hole-variants'
 
@@ -13,12 +13,11 @@ interface ISettingsProps {}
 
 export const Settings = ({}: ISettingsProps) => {
   return (
-    <div className="w-full md:w-[400px] md:min-w-[400px]">
       <Accordion type="single" collapsible defaultValue="item-1">
         <AccordionItem value="item-1">
           <AccordionTrigger>Maтериал верха</AccordionTrigger>
           <AccordionContent>
-            <DeskTopMaterials />
+            <DesktopMaterials />
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-2">
@@ -40,6 +39,5 @@ export const Settings = ({}: ISettingsProps) => {
           </AccordionContent>
         </AccordionItem>
       </Accordion>
-    </div>
   )
 }

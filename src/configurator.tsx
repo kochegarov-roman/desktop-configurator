@@ -1,6 +1,6 @@
 import { Suspense, useContext, useEffect, useRef } from 'react'
 import { OrbitControls, useGLTF } from '@react-three/drei'
-import { Canvas, useThree } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber'
 import { actions, DesktopContext } from './store/DesktopContext'
 import { Leg } from './widgets/leg'
 import { Desktop } from './widgets/desktop'
@@ -14,19 +14,10 @@ import { Environment } from './widgets/environment'
 import { ContextNotFoundError } from './components/ui/context-not-found-error'
 import { Overlay } from './widgets/overlay'
 import { Settings } from './widgets/settings'
-import { ICameraProperties, IDesktopProperties } from './types'
+import { IDesktopProperties } from './types'
 import './index.css'
+import {MoveCamera} from "./components/move-camera";
 
-const MoveCamera = ({ position, lookAt }: ICameraProperties) => {
-  const { camera } = useThree()
-
-  useEffect(() => {
-    camera.position.set(...position)
-    camera.lookAt(...lookAt)
-  }, [camera, position, lookAt])
-
-  return null
-}
 
 interface IConfiguratorProps {
   changeConfiguratorHandler: (state: IDesktopProperties) => void
@@ -61,9 +52,9 @@ export const Configurator = ({
 
   return (
     <main className="mt-10">
-      <h1 className="mb-3 bold">Конфигуратор рабочего стола</h1>
+      <h1 className="mb-3 bold"><b>Конфигуратор рабочего стола</b></h1>
       <div className="flex gap-5 flex-wrap md:flex-nowrap">
-        <div className={`w-full min-h-[500px] h-[500px] bg-[#ebebeb] relative`}>
+        <div className="md:w-[65%] lg:w-[70%] w-full min-h-[400px] h-[500px] bg-[#ebebeb] relative">
           <Canvas
             ref={canvasRef}
             camera={{ position: [-15, 10, 15], fov: 5 }}
@@ -76,24 +67,24 @@ export const Configurator = ({
               />
               <OrbitControls minDistance={5} maxDistance={50} makeDefault />
               <Environment />
-              <Leg position={[0, 0, width / 1000 / 2]} scale={[1, 1, 1]} />
-              <Leg position={[0, 0, -width / 1000 / 2]} scale={[1, 1, -1]} />
+              <Leg position={[0, 0, width / 2]} scale={[1, 1, 1]} />
+              <Leg position={[0, 0, -width / 2]} scale={[1, 1, -1]} />
 
               <Prop
-                position={[-0.1, 0.005, width / 1000 / 2]}
+                position={[-0.1, 0.005, width / 2]}
                 scale={[1, 1, 1]}
               />
               <Prop
-                position={[-0.1, 0.005, -width / 1000 / 2]}
+                position={[-0.1, 0.005, -width / 2]}
                 scale={[1, 1, -1]}
               />
 
               <Prop
-                position={[depth / 1000 - 0.2, 0.005, width / 1000 / 2]}
+                position={[depth - 0.2, 0.005, width / 2]}
                 scale={[1, 1, 1]}
               />
               <Prop
-                position={[depth / 1000 - 0.2, 0.005, -width / 1000 / 2]}
+                position={[depth - 0.2, 0.005, -width / 2]}
                 scale={[1, 1, -1]}
               />
               <Desktop />
@@ -101,7 +92,9 @@ export const Configurator = ({
           </Canvas>
           <Overlay cameraLookStart={cameraLookStart} />
         </div>
-        <Settings />
+        <div className="w-full md:w-[35%] lg:w-[30%]">
+          <Settings />
+        </div>
       </div>
     </main>
   )

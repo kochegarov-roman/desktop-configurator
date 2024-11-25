@@ -29,16 +29,16 @@ export const Desktop = () => {
   } = context
   const { materials } = useGLTF(desktopMaterial.path)
 
-  const boxGeometry = new THREE.BoxGeometry(depth / 1000, 0.01, width / 1000)
-  const [initialPositionX] = useState(depth / 1000)
+  const boxGeometry = new THREE.BoxGeometry(depth, 0.01, width)
+  const [initialPositionX] = useState(depth)
 
   return (
     <mesh
       castShadow={true}
       material={materials[desktopMaterial.materialKey]}
       position={[
-        (depth / 1000 - initialPositionX) / 2,
-        height / 1000 - 0.01,
+        (depth - initialPositionX) / 2,
+        height - 0.01,
         0
       ]}
     >

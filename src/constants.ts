@@ -82,15 +82,17 @@ export const HOLE_VARIANTS: IHoleVariant[] = [
   }
 ]
 
+export const SIZE_UNIT = 1000;
+
 export const INITIAL_DESKTOP_SIZE_PROPERTIES: DesktopPropertiesType = {
-  width: { size: { min: 1200, max: 2400 }, title: 'Ширина A (мм)' },
-  depth: { size: { min: 300, max: 900 }, title: 'Глубина A (мм)' },
-  height: { size: { min: 500, max: 1200 }, title: 'Высота ножек (мм)' }
+  width: { size: { min: 1200/SIZE_UNIT, max: 2400/SIZE_UNIT }, title: 'Ширина A (мм)' },
+  depth: { size: { min: 300/SIZE_UNIT, max: 900/SIZE_UNIT }, title: 'Глубина A (мм)' },
+  height: { size: { min: 500/SIZE_UNIT, max: 1200/SIZE_UNIT }, title: 'Высота ножек (мм)' }
 }
 
 export const SHAPE_KEYS_SIZE = {
-  depth: { min: 300, max: 1500 },
-  height: { min: 500, max: 1200 }
+  depth: { min: 300/SIZE_UNIT, max: 1500/SIZE_UNIT },
+  height: { min: 500/SIZE_UNIT, max: 1200/SIZE_UNIT }
 }
 
 export const LEG_DATA = [
